@@ -23,13 +23,28 @@ public class Insert extends AppCompatActivity {
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DBHome dbh = new DBHome(Insert.this);
-                dbh.insertData(Integer.parseInt(e1.getText().toString()),
-                        e2.getText().toString(),
-                        Integer.parseInt(e3.getText().toString()));
-                Snackbar bar = Snackbar.make(v, "Insertion successful!", Snackbar.LENGTH_LONG);
-                bar.show();
-                dbh.close();
+                if(e1.getText().toString().equals(""))
+                {
+                    e1.setError("Cannot be empty.");
+                }
+                else if(e2.getText().toString().equals(""))
+                {
+                    e2.setError("Cannot be empty.");
+                }
+                else if(e3.getText().toString().equals(""))
+                {
+                    e3.setError("Cannot be empty.");
+                }
+                else
+                {
+                    DBHome dbh = new DBHome(Insert.this);
+                    dbh.insertData(Integer.parseInt(e1.getText().toString()),
+                            e2.getText().toString(),
+                            Integer.parseInt(e3.getText().toString()));
+                    Snackbar bar = Snackbar.make(v, "Insertion successful!", Snackbar.LENGTH_LONG);
+                    bar.show();
+                    dbh.close();
+                }
             }
         });
     }

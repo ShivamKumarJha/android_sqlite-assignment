@@ -23,11 +23,17 @@ public class Delete extends AppCompatActivity {
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DBHome d = new DBHome(Delete.this);
-                d.deleteData(Integer.parseInt(e.getText().toString()));
-                Snackbar bar = Snackbar.make(v, "Record Deleted!", Snackbar.LENGTH_LONG);
-                bar.show();
-                d.close();
+                if(e.getText().toString().equals(""))
+                {
+                    e.setError("Cannot be empty.");
+                }
+                else {
+                    DBHome d = new DBHome(Delete.this);
+                    d.deleteData(Integer.parseInt(e.getText().toString()));
+                    Snackbar bar = Snackbar.make(v, "Record Deleted!", Snackbar.LENGTH_LONG);
+                    bar.show();
+                    d.close();
+                }
             }
         });
     }
